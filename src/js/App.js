@@ -3,17 +3,15 @@ import logo from '../logo.svg';
 import '../css/App.css';
 import Count from './Count';
 
-import {Input} from 'rctui';
-
 class App extends Component {
     constructor(props){
         super(props);
 
         let init = {
-            base: "14000.00",
-            sbase: "17817.00",
-            gbase: "17817.00",
-            bt: "700.00",
+            base: "14000",
+            sbase: "17817",
+            gbase: "17817",
+            bt: "700",
             percent: "15",
         };
         this.state= Count.count(init.base, init.sbase, init.gbase, init.bt, init.percent);
@@ -52,41 +50,41 @@ class App extends Component {
                 <div>
                     <div>基薪:</div>
 
-                    <Input
+                    <input
                         value={this.state.base}
-                        onChange={(e,text) => this.countBase(text)}
+                        onChange={(e,text) => this.countBase.bind(this,text)}
                     />
                 </div>
 
                 <div>
                     <div>社保缴费基数:</div>
-                    <Input
+                    <input
                         value={this.state.sbase}
-                        onChange={(e,text) => this.countsBase(text)}
+                        onChange={(e,text) => this.countsBase.bind(this, text)}
                     />
                 </div>
 
                 <div>
                     <div>公积金缴费基数:</div>
-                    <Input
+                    <input
                         value={this.state.gbase}
-                        onChange={(e,text) => this.countgBase(text)}
+                        onChange={(e,text) => this.countgBase.bind(this, text)}
                     />
                 </div>
 
                 <div>
                     <div>其他进账:</div>
-                    <Input
+                    <input
                         value={this.state.bt}
-                        onChange={(e,text) => this.countBt(text)}
+                        onChange={(e,text) => this.countBt.bind(this, text)}
                     />
                 </div>
 
                 <div>
                     <div>绩效百分比:</div>
-                    <Input
+                    <input
                         value={this.state.percent}
-                        onChange={(e,text) => this.countPercent(text)}
+                        onChange={(e,text) => this.countPercent.bind(this, text)}
                     />
                 </div>
 

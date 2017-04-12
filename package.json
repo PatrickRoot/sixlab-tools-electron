@@ -4,7 +4,6 @@
   "private": true,
   "main": "./main.js",
   "dependencies": {
-    "rctui": "^0.7.12",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },
