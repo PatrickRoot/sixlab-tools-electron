@@ -8,8 +8,8 @@ app.on('window-all-closed', () => {
 
 app.on('ready', function () {
     mainWindow = new BrowserWindow({
-        height: 600,
-        width: 800
+        height: 680,
+        width: 1000
     });
 
     mainWindow.on('closed', () => {

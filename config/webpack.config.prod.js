@@ -24,11 +24,6 @@ var publicUrl = publicPath.slice(0, -1);
 // Get environment variables to inject into our app.
 var env = getClientEnvironment(publicUrl);
 
-console.log("----------------------------------------");
-console.log(publicPath);
-console.log(publicUrl);
-console.log("========================================");
-
 // Assert this just to be safe.
 // Development builds of React are slow and not intended for production.
 if (env.stringified['process.env'].NODE_ENV !== '"production"') {
@@ -129,7 +124,11 @@ module.exports = {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loader: 'babel',
-
+          query:{
+              plugins:[
+                  ['import', [{libraryName: "antd", style: 'css'}]],
+              ]
+          }
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
