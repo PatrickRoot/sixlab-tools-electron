@@ -1,17 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './js/App';
+import $ from 'jquery';
+
 import './css/index.css';
 
-import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+window.$ = $;
 
-const muiTheme = getMuiTheme(lightBaseTheme);
+ReactDOM.render(<App />, document.getElementById("root"));
 
-ReactDOM.render(
-    <MuiThemeProvider muiTheme={muiTheme}>
-        <App/>
-    </MuiThemeProvider>,
-    document.getElementById('root')
-);
+$(document).ready(function () {
+    function resizeMenu() {
+        var height = $(window).height();
+        var contentHeight = height - 202;
+        $(".frame-content").height(contentHeight);
+        $(".ant-layout").height(height);
+    }
+
+    $(window).resize(function () {
+        resizeMenu();
+    });
+
+    resizeMenu();
+});

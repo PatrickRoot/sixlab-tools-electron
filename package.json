@@ -5,10 +5,9 @@
   "main": "./main.js",
   "dependencies": {
     "antd": "^2.9.1",
-    "material-ui": "^0.17.3",
+    "jquery": "^3.2.1",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-dom": "^15.5.4"
   },
   "devDependencies": {
     "autoprefixer": "6.7.2",
@@ -58,7 +57,9 @@
     "electron": "electron .",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "packager1": "electron-packager ./app SixlabTools --all --out ./OutApp --electronVersion 1.4.13 --overwrite --icon=./app/img/icon/icon.ico",
+    "packager": "electron-packager ./ 六楼工具 --mas --out ./OutApp --electronVersion 1.4.13 --overwrite"
   },
   "jest": {
     "collectCoverageFrom": [

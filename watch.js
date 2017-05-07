@@ -1,8 +1,10 @@
 var process = require('child_process');
 var fs = require('fs');
+var moment = require('moment');
 
-var building = false;
 var buildingQueue = [];
+
+let buildProcess;
 
 var path = "/Users/patrick/code_space/repos/sixlab-tools/src/";
 fs.watch(path, {recursive: true}, function (eventType, filename) {
@@ -12,35 +14,46 @@ fs.watch(path, {recursive: true}, function (eventType, filename) {
 
     console.log("***************************************     modify :"+filename);
     buildingQueue.push("wait");
-    if(!building){
+    if(!buildProcess){
+        console.log("***************************************     building");
+        build();
+    }else{
+        buildProcess.kill();
         console.log("***************************************     building");
         build();
     }
 });
 
 function build() {
-    var begin = new Date();
-    building = true;
+    var begin = moment().unix();
     buildingQueue = ["building"];
 
-    let buildProcess = process.exec('yarn run build', "/Users/patrick/code_space/repos/sixlab-tools/");
+    buildProcess = process.exec('yarn run build', "/Users/patrick/code_space/repos/sixlab-tools/");
+
+    console.log("build >>> pid:" + buildProcess.pid);
 
     buildProcess.stdout.on('data', function (data) {
         if (data.indexOf("\n\n") != -1) {
-            console.log("build >>> " + data.substring(0, data.length - 2));
-        } else {
-            console.log("build >>> " + data);
+            console.log("build >>> data1:" + data.substring(0, data.length - 2));
+        } else if(data){
+            console.log("build >>> data2:" + data);
         }
     });
     buildProcess.on('exit', function (code) {
-        let end = new Date();
-        let t = end.getTime() - begin.getTime();
-        console.log('***************************************     build finish:' + end);
+        let end = moment().unix();
+        let t = end - begin;
         console.log('耗时：' + t);
-        building = false;
-        buildingQueue.pop();
-        if(buildingQueue.length > 0 ){
-            build();
+
+        end = moment().format("YYYY-MM-DD HH:mm:ss");
+        if(code === 0){
+            console.log('***************************************     build finish:' + end);
+            buildProcess = null;
+            buildingQueue.pop();
+            if (buildingQueue.length > 0) {
+                build();
+            }
+        }else{
+            console.log('***************************************     build interrupt:' + end);
         }
     });
 }

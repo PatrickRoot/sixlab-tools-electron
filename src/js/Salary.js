@@ -1,20 +1,17 @@
 import React, {Component} from 'react';
-import logo from '../logo.svg';
-import '../css/App.css';
 import Count from './tools/Count';
 
-import AppBar from 'material-ui/AppBar';
-import TextField from 'material-ui/TextField';
+import {InputNumber} from 'antd';
 
 class Salary extends Component {
     constructor(props) {
         super(props);
 
         let init = {
-            base: "2000",
-            sbase: "1000",
-            gbase: "1000",
-            bt: "17817",
+            base: "14000",
+            sbase: "17817",
+            gbase: "17817",
+            bt: "700",
             percent: "15"
         };
         this.state = Count.count(init.base, init.sbase, init.gbase, init.bt, init.percent);
@@ -52,46 +49,41 @@ class Salary extends Component {
                 </div>
 
                 <div>
-                    <TextField
+                    <InputNumber
                         defaultValue={this.state.base}
-                        floatingLabelText="基薪"
-                        hintText="基薪"
-                        onChange={(event, value) => this.countBase(value)}/>
+                        placeholder="基薪"
+                        onChange={this.countBase.bind(this)}/>
                 </div>
 
                 <div>
-                    <TextField
+                    <InputNumber
                         defaultValue={this.state.sbase}
-                        floatingLabelText="社保基数"
-                        hintText="社保基数"
-                        onChange={(event, value) => this.countsBase(value)}
+                        placeholder="社保基数"
+                        onChange={this.countsBase.bind(this)}
                     />
                 </div>
 
                 <div>
-                    <TextField
+                    <InputNumber
                         defaultValue={this.state.gbase}
-                        floatingLabelText="公积金基数"
-                        hintText="公积金基数"
-                        onChange={(event, value) => this.countgBase(value)}
+                        placeholder="公积金基数"
+                        onChange={this.countgBase.bind(this)}
                     />
                 </div>
 
                 <div>
-                    <TextField
+                    <InputNumber
                         defaultValue={this.state.bt}
-                        floatingLabelText="补贴等"
-                        hintText="补贴等"
-                        onChange={(event, value) => this.countBt(value)}
+                        placeholder="补贴等"
+                        onChange={this.countBt.bind(this)}
                     />
                 </div>
 
                 <div>
-                    <TextField
+                    <InputNumber
                         defaultValue={this.state.percent}
-                        floatingLabelText="绩效百分比"
-                        hintText="绩效百分比"
-                        onChange={(event, value) => this.countPercent(value)}/>
+                        placeholder="绩效百分比"
+                        onChange={this.countPercent.bind(this)}/>
                 </div>
 
                 <div>
@@ -128,4 +120,4 @@ class Salary extends Component {
     }
 }
 
-export default App;
+export default Salary;
