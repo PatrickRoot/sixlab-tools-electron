@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Layout, Menu, Icon, Row, Col, Tag} from 'antd';
+import {Layout, Icon, Row, Col, Tag} from 'antd';
 const {Header, Content, Footer, Sider} = Layout;
 const CheckableTag = Tag.CheckableTag;
 
@@ -66,7 +66,7 @@ class App extends Component {
                                         style={{fontSize: 28, marginRight: 18, height: 44, padding: 8}}
                                         onChange={this.setting.bind(this)}
                                     >
-                                        <Icon type="setting"/>
+                                        <Icon className="icon-shezhi"/>
                                     </CheckableTag>
                                 </Row>
                             </Col>

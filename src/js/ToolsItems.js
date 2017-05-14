@@ -1,19 +1,22 @@
 import React, {Component} from 'react';
 import {Menu, Icon} from 'antd';
-import Salary from './Salary';
-import Setting from './Setting';
+import Salary from './tools/Salary';
+import Setting from './tools/Setting';
+import Show from './tools/Show';
 
 const tools = [
-    {key: "index", clz: "", title: "首页", menu: true, chosen: true, icon: "appstore-o"},
-    {key: "Salary", clz: Salary, title: "工具", menu: true, chosen: true, icon: "appstore-o"},
-    {key: "setting", clz: Setting, title: "设置", menu: true, chosen: true, icon: "setting"},
+    {key: "index", clz: "", title: "首页", menu: true, disabled: true, icon: "icon-shouye"},
+    {key: "Show", clz: Show, title: "电视剧", menu: true, disabled: false, icon: "icon-dianshi"},
+    {key: "Salary", clz: Salary, title: "工资计算器", menu: true, disabled: false, icon: "icon-tubiao98"},
+    {key: "Salary2", clz: Salary, title: "工具2", menu: true, disabled: false, icon: "iron-rili"},
+    {key: "Salary3", clz: Salary, title: "工具3", menu: true, disabled: false, icon: "iron-rili"},
+    {key: "setting", clz: Setting, title: "设置", menu: true, disabled: false, icon: "iron-setting"},
 ];
 
-tools[0].description = "0";
-tools[1].description = "1";
-tools[2].description = "2";
-
 class ToolsItems {
+    /**
+     * 获取最后打开的 Key，即当前打开的 key
+     */
     static getOpenKey() {
         let key = localStorage.getItem("lastOpenKey");
         if (!key) {
@@ -22,11 +25,19 @@ class ToolsItems {
         }
         return key;
     }
-
+    
+    /**
+     * 改变最后打开的 key
+     * @param key
+     */
     static changeOpenKey(key){
         localStorage.setItem("lastOpenKey", key);
     }
-
+    
+    /**
+     * 获取当前 content 的内容
+     * @returns {string}
+     */
     static getContent() {
         let key = this.getOpenKey();
 
@@ -42,7 +53,11 @@ class ToolsItems {
 
         return content;
     }
-
+    
+    /**
+     * 获取当前的 Title
+     * @returns {string}
+     */
     static getTitle() {
         let selectMenus = this.selectMenus();
 
@@ -59,28 +74,52 @@ class ToolsItems {
 
         return title;
     }
-
+    
+    /**
+     * 获取默认的菜单
+     * @returns {Array.<*>}
+     */
     static defaultMenus() {
         return tools.filter(function (item) {
             return item.menu;
         })
     }
-
+    
+    /**
+     * 获取默认的工具
+     * @returns {[*,*,*]}
+     */
     static defaultTools() {
         return tools;
     }
-
+    
+    /**
+     * 获取已启用的工具，默认是所有工具
+     * @returns {[*,*,*]}
+     */
     static selectTools() {
         let select = tools;
-        let local = localStorage.selectTools;
+        let local = localStorage.getItem("selectTools");
         if (local) {
             select = JSON.parse(local);
         } else {
-            localStorage.selectTools = JSON.stringify(tools);
+            localStorage.setItem("selectTools", JSON.stringify(select));
         }
         return select;
     }
-
+    
+    /**
+     * 选中工具
+     * @param selectTools
+     */
+    static setSelectTools(selectTools){
+        localStorage.setItem("selectTools", JSON.stringify(selectTools));
+    }
+    
+    /**
+     * 获取已启用的菜单，默认是所有菜单，去的是默认工具中的菜单项
+     * @returns {Array.<*|*|*>}
+     */
     static selectMenus() {
         let select = this.selectTools();
 
@@ -88,7 +127,12 @@ class ToolsItems {
             return item.menu;
         })
     }
-
+    
+    /**
+     * 根据 key 获取当前的 菜单/工具
+     * @param key
+     * @returns {*}
+     */
     static selectMenuByKey(key) {
         return tools.filter(function (tool) {
             return tool.key === key;
@@ -114,9 +158,9 @@ class ToolsMenus extends Component {
                   selectedKeys={[this.props.defaultKey]}>
                 {
                     ToolsItems.selectMenus().map((item, index) => {
-                        let icon = <Icon type="appstore-o"/>;
+                        let icon = <Icon className="icon-rili"/>;
                         if (item.icon) {
-                            icon = <Icon type={item.icon}/>;
+                            icon = <Icon className={item.icon}/>;
                         }
 
                         return <Menu.Item key={item.key}>
