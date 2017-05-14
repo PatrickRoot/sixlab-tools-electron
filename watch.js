@@ -6,7 +6,7 @@ var buildingQueue = [];
 
 let buildProcess;
 
-var path = "/Users/patrick/code_space/repos/sixlab-tools/src/";
+var path = "/Users/patrick/code_space/repos/sixlab-tools-electron/src/";
 fs.watch(path, {recursive: true}, function (eventType, filename) {
     if (filename.indexOf("___jb_") != -1) {
         return;
@@ -28,7 +28,7 @@ function build() {
     var begin = moment().unix();
     buildingQueue = ["building"];
 
-    buildProcess = process.exec('yarn run build', "/Users/patrick/code_space/repos/sixlab-tools/");
+    buildProcess = process.exec('yarn run build', "/Users/patrick/code_space/repos/sixlab-tools-electron/");
 
     console.log("build >>> pid:" + buildProcess.pid);
 
