@@ -9,6 +9,9 @@ import './css/iconfont.css';
 
 window.$ = $;
 
+//模拟数据
+import './js/mock';
+
 let version = 2;
 
 let storage = localStorage.getItem("version");
