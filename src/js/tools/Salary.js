@@ -59,7 +59,7 @@ class Salary extends Component {
         super(props);
 
         let init = {
-            base: "14000",
+            base: "14500",
             sbase: "17817",
             gbase: "17817",
             bt: "700",

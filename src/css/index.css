@@ -4,12 +4,3 @@
     border-radius: 6px;
     margin: 16px;
 }
-
-@font-face {
-    font-family: '';  /* project id 301576 */
-    src: url('https://at.alicdn.com/t/font_dpbezk86y0q9f6r.eot');
-    src: url('https://at.alicdn.com/t/font_dpbezk86y0q9f6r.eot?#iefix') format('embedded-opentype'),
-    url('https://at.alicdn.com/t/font_dpbezk86y0q9f6r.woff') format('woff'),
-    url('https://at.alicdn.com/t/font_dpbezk86y0q9f6r.ttf') format('truetype'),
-    url('https://at.alicdn.com/t/font_dpbezk86y0q9f6r.svg#') format('svg');
-}

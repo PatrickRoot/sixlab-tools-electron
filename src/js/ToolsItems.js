@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Menu, Icon} from 'antd';
+import MyCalendar from './tools/MyCalendar';
 import Salary from './tools/Salary';
 import Setting from './tools/Setting';
 import Show from './tools/Show';
@@ -8,9 +9,9 @@ const tools = [
     {key: "index", clz: "", title: "首页", menu: true, disabled: true, icon: "icon-shouye"},
     {key: "Show", clz: Show, title: "电视剧", menu: true, disabled: false, icon: "icon-dianshi"},
     {key: "Salary", clz: Salary, title: "工资计算器", menu: true, disabled: false, icon: "icon-tubiao98"},
-    {key: "Salary2", clz: Salary, title: "工具2", menu: true, disabled: false, icon: "iron-rili"},
-    {key: "Salary3", clz: Salary, title: "工具3", menu: true, disabled: false, icon: "iron-rili"},
-    {key: "setting", clz: Setting, title: "设置", menu: true, disabled: false, icon: "iron-setting"},
+    {key: "MyCalendar", clz: MyCalendar, title: "日历", menu: true, disabled: false, icon: "icon-rili"},
+    {key: "Salary3", clz: Salary, title: "工具3", menu: true, disabled: false, icon: "icon-movie"},
+    {key: "setting", clz: Setting, title: "设置", menu: true, disabled: false, icon: "icon-setting"},
 ];
 
 class ToolsItems {
